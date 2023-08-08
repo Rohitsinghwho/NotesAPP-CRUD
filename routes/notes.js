@@ -56,4 +56,28 @@ router.get("/fetchall",async(req,res)=>{
   }
   
 })
+
+// Route=5, update note on api/notes/update/:id
+
+router.put("/updateNote/:id",async(req,res)=>{
+  
+  const {title,Description}=req.body;
+  try {
+    const note= {}
+    if(title){
+      note.title=title;
+      
+    }
+    if(Description){
+      note.Description=Description;
+    }
+    const UserID= await notesModel.findById(req.params.id);
+    const userUpdate= await notesModel.findByIdAndUpdate(UserID, { $set: note },
+      { new: true })
+
+      res.status(200).json({userUpdate})
+  } catch (error) {
+    res.status(400).send("Bad Request");
+  }
+})
 module.exports = router;
