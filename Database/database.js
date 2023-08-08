@@ -1,8 +1,9 @@
+// importing mongoose from mongoose
 const mongoose= require('mongoose');
-
-const connecttoDb=()=>{
-    mongoose.connect("mongodb://127.0.0.0:27017");
-    console.log("connected to mongoose successfully")
+// exporting database to the main server
+module.exports= connecttoDb=()=>{
+    mongoose.connect("mongodb://0.0.0.0:27017").then(()=>{
+        console.log("Database is connected to the server successfully!")
+    }).catch((e)=>console.log(e));
 }
 
-module.exports = connecttoDb;
