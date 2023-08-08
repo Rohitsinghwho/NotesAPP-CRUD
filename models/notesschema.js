@@ -9,7 +9,11 @@ const notesSchema= new Schema({
     Description:{
         type:String,
         require:true
-    }
+    },
+    date:{
+    type:Date,
+    default: Date.now
+   }
 })
 
 module.exports= notesModel= mongoose.model('notesModel', notesSchema);
