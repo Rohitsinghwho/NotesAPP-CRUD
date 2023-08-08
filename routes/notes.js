@@ -34,4 +34,26 @@ router.delete("/deleteNotes/:id", async (req, res) => {
     res.status(400).send("Bad Request");
   }
 });
+
+// Route=3, Fetch specific note notes on api/notes/fetchNotes/:id
+router.get("/fetchNotes/:id",async(req,res)=>{
+  try {
+    const UserID= await notesModel.findById(req.params.id);
+    res.json(UserID);
+  } catch (error) {
+    res.status(400).send("Bad Request");
+  }
+  
+})
+
+// Route=4, fetch all notes on api/notes/fetchall
+router.get("/fetchall",async(req,res)=>{
+  try {
+    const User= await notesModel.find({});
+    res.json(User);
+  } catch (error) {
+    res.status(400).send("Bad Request");
+  }
+  
+})
 module.exports = router;
